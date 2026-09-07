@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácoras de Decisiones - MIRA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1F4E78 0%, #2E5F8A 100%);
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            color: #1F4E78;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        .info-bar {
+            background: white;
+            padding: 15px 30px;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .info-item {
+            text-align: center;
+        }
+        .info-label {
+            color: #999;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            color: #1F4E78;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card {
+            border-left: 5px solid #1F4E78;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .card-id {
+            background: #1F4E78;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.85em;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .card-title {
+            color: #1F4E78;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .card-fecha {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .card-decision {
+            background: #E8F4F8;
+            border-left: 3px solid #00AA88;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.95em;
+            color: #333;
+        }
+        .impact {
+            background: #FFF4E6;
+            border-left: 3px solid #FF9800;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.85em;
+            color: #666;
+            font-style: italic;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            margin-top: 20px;
+        }
+        .legend {
+            background: white;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .legend-title {
+            color: #1F4E78;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>BITÁCORAS DE DECISIONES</h1>
+            <p>Proyecto MIRA - Plataforma de Inteligencia Multimodal</p>
+            <p style="margin-top: 15px; font-size: 0.9em; color: #999;">Actuando como Representante del Cliente (Aseguradora Piloto)</p>
+        </div>
+
+        <div class="info-bar">
+            <div class="info-item">
+                <div class="info-label">Decisiones Documentadas</div>
+                <div class="info-value">9</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Fecha de Documentación</div>
+                <div class="info-value">28-08-2026</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Fuente</div>
+                <div class="info-value">Entrevistas + Documento</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-title">Acerca de estas bitácoras</div>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.95em;">
+                Cada bitácora documenta una decisión crítica tomada como representante del cliente frente a contradicciones
+                encontradas entre el documento de Producto y las necesidades reales operacionales. El formato sigue la estructura
+                de auditoría: ID, Fecha, Asunto, Contexto, Alternativas, Decisión, Justificación e Impacto.
+            </p>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #E8F4F8;"></div>
+                    <span>Decisión Adoptada</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #FFF4E6;"></div>
+                    <span>Impacto en Arquitectura</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- DEC-01 -->
+            <div class="card">
+                <div class="card-id">DEC-01</div>
+                <div class="card-title">Retención de Evidencia</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> 90 días (Producto) vs. 5-10 años (Cliente)
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> 5 años mínimo de retención, con evidencia cifrada. Eliminación automática solo tras autorización expresa.
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> +15-20% infraestructura cloud, políticas backup más estrictas, impacto en modelo de costos.
+                </div>
+            </div>
+
+            <!-- DEC-02 -->
+            <div class="card">
+                <div class="card-id">DEC-02</div>
+                <div class="card-title">Definición de Validación Cobrable</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> ¿Qué se factura? (3 interpretaciones diferentes)
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> Validación = caso procesado exitosamente con resultado y puntaje. Excluye: errores por evidencia ilegible.
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> Crítico para facturación. Requiere definición escrita ANTES de Entrega 2 (dic). Riesgo: disputa contractual en primera factura.
+                </div>
+            </div>
+
+            <!-- DEC-03 -->
+            <div class="card">
+                <div class="card-id">DEC-03</div>
+                <div class="card-title">Visualización del Puntaje</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> ¿Mostrar puntaje primero o después de evidencia?
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> Mostrar evidencia y alertas primero. Puntaje al final, DESPUÉS de formarse criterio del operador.
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> Rediseño de UI en Entrega 3. Reduce sesgos de anclamiento. Cliente estima -5-8% errores de decisión humana.
+                </div>
+            </div>
+
+            <!-- DEC-04 -->
+            <div class="card">
+                <div class="card-id">DEC-04</div>
+                <div class="card-title">Umbrales de Decisión</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> 85 (Producto demo) vs. 90 (Cliente conservador)
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> Sugerir 90-60-20 como valores iniciales. Cliente tiene poder absoluto de cambiar. Todo cambio queda auditado.
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> Deshardcodear en Entrega 1. Pantalla de calibración en onboarding. Audit log de cambios. ~600 decisiones/mes afectadas por esta diferencia.
+                </div>
+            </div>
+
+            <!-- DEC-05 -->
+            <div class="card">
+                <div class="card-id">DEC-05</div>
+                <div class="card-title">Tiempos de Procesamiento</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> Sincrónico 5 seg (Producto) vs. Realidad 30-40 seg (Video varios min)
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> Híbrido: Sincrónico para livianos (2-5 seg). Asincrónico para multimedia. Prioridad: predecibilidad sobre velocidad.
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> Rediseño arquitectónico significativo. Message queue, webhooks, Status API. Entrega 2 (dic) incluye infraestructura asincrónica.
+                </div>
+            </div>
+
+            <!-- DEC-06 -->
+            <div class="card">
+                <div class="card-id">DEC-06</div>
+                <div class="card-title">Comportamiento ante Rate Limit</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> ¿Rechazar o encolar llamadas que excedan límite?
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> Encolar automáticamente, NO rechazar. Cliente recibe ACK inmediato con posición en cola.
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> Message broker, status endpoint, alerts si cola crece. Tests de carga con burst de 500 llamadas/seg. Protege integridad de datos en carga inicial.
+                </div>
+            </div>
+
+            <!-- DEC-07 -->
+            <div class="card">
+                <div class="card-id">DEC-07</div>
+                <div class="card-title">Prohibición de Rechazos Automáticos</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> Rechazo automático (Producto) vs. Requiere intervención humana (Legal cliente)
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> Aprobaciones automáticas sí. Rechazos NO. Bajo puntaje = DERIVACIÓN. Operador humano decide rechazar.
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> Cumplimiento regulatorio obligatorio. Rediseño lógica de decisión en motor (Entrega 2). Audit trail de quién rechazó y por qué.
+                </div>
+            </div>
+
+            <!-- DEC-08 -->
+            <div class="card">
+                <div class="card-id">DEC-08</div>
+                <div class="card-title">Autenticación Federada</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> Usuarios propios (Producto) vs. LDAP/AD corporativo (Cliente)
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> Soportar ambos modos: propios (default) + federación LDAP/AD (feature posterior).
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> Implementación en Entrega 4 (abril 2027). Connector LDAP, mapeo groups->roles, provisioning automático. Bloqueador comercial para clientes enterprise.
+                </div>
+            </div>
+
+            <!-- DEC-09 -->
+            <div class="card">
+                <div class="card-id">DEC-09</div>
+                <div class="card-title">Ventana de Mantenimiento 24/7</div>
+                <div class="card-fecha">28-08-2026</div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 10px;">
+                    <strong>Contradicción:</strong> Ventana nocturna única (Producto) vs. Multi-zona horaria (Cliente)
+                </p>
+                <div class="card-decision">
+                    <strong>Decisión:</strong> Transitorio: Ventana coordinada por zona, máximo 30 min, con encuela de casos. Meta: Blue-green deployment (cero downtime).
+                </div>
+                <div class="impact">
+                    <strong>Impacto:</strong> Arquitectura: load balancer inteligente, rollback automático, testing con traffic real. SLA: máx 1 vez/mes, 30 min downtime.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Documento Generado:</strong> 28-08-2026</p>
+            <p><strong>Archivo Completo:</strong> Bitacora_Decisiones_Cliente.docx (en formato Word con estructura de tabla auditable)</p>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+                Este resumen documenta las decisiones críticas tomadas como cliente ante contradicciones
+                en el documento de producto. Cada decisión incluye contexto, alternativas evaluadas,
+                justificación del criterio y impacto en arquitectura.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
